@@ -1,0 +1,238 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'mocha' ]
+2 info using npm@1.4.14
+3 info using node@v0.10.29
+4 verbose node symlink /usr/local/bin/node
+5 verbose cache add [ 'mocha', null ]
+6 verbose cache add name=undefined spec="mocha" args=["mocha",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'mocha',
+7 verbose parsed url   path: 'mocha',
+7 verbose parsed url   href: 'mocha' }
+8 silly lockFile a619da43-mocha mocha
+9 verbose lock mocha /home/vagrant/.npm/a619da43-mocha.lock
+10 silly lockFile a619da43-mocha mocha
+11 silly lockFile a619da43-mocha mocha
+12 verbose addNamed [ 'mocha', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile b9899f31-mocha mocha@
+15 verbose lock mocha@ /home/vagrant/.npm/b9899f31-mocha.lock
+16 silly addNameRange { name: 'mocha', range: '*', hasData: false }
+17 verbose url raw mocha
+18 verbose url resolving [ 'https://registry.npmjs.org/', './mocha' ]
+19 verbose url resolved https://registry.npmjs.org/mocha
+20 info trying registry request attempt 1 at 10:31:35
+21 verbose etag "78XWBSCHNN4P85E666EY3PLTR"
+22 http GET https://registry.npmjs.org/mocha
+23 http 304 https://registry.npmjs.org/mocha
+24 silly registry.get cb [ 304,
+24 silly registry.get   { date: 'Mon, 10 Nov 2014 10:31:35 GMT',
+24 silly registry.get     server: 'Apache',
+24 silly registry.get     via: '1.1 varnish',
+24 silly registry.get     'last-modified': 'Mon, 10 Nov 2014 10:31:35 GMT',
+24 silly registry.get     'cache-control': 'max-age=60',
+24 silly registry.get     etag: '"78XWBSCHNN4P85E666EY3PLTR"',
+24 silly registry.get     age: '38',
+24 silly registry.get     'x-served-by': 'cache-fra1229-FRA',
+24 silly registry.get     'x-cache': 'HIT',
+24 silly registry.get     'x-cache-hits': '1',
+24 silly registry.get     'x-timer': 'S1415615495.662402,VS0,VE0',
+24 silly registry.get     vary: 'Accept',
+24 silly registry.get     'content-length': '0',
+24 silly registry.get     'keep-alive': 'timeout=10, max=50',
+24 silly registry.get     connection: 'Keep-Alive' } ]
+25 verbose etag mocha from cache
+26 silly addNameRange number 2 { name: 'mocha', range: '*', hasData: true }
+27 silly addNameRange versions [ 'mocha',
+27 silly addNameRange   [ '0.0.1-alpha1',
+27 silly addNameRange     '0.0.1-alpha2',
+27 silly addNameRange     '0.0.1-alpha3',
+27 silly addNameRange     '0.0.1-alpha4',
+27 silly addNameRange     '0.0.1-alpha5',
+27 silly addNameRange     '0.0.1-alpha6',
+27 silly addNameRange     '0.0.1',
+27 silly addNameRange     '0.0.2',
+27 silly addNameRange     '0.0.3',
+27 silly addNameRange     '0.0.4',
+27 silly addNameRange     '0.0.5',
+27 silly addNameRange     '0.0.6',
+27 silly addNameRange     '0.0.7',
+27 silly addNameRange     '0.0.8',
+27 silly addNameRange     '0.1.0',
+27 silly addNameRange     '0.2.0',
+27 silly addNameRange     '0.3.0',
+27 silly addNameRange     '0.3.1',
+27 silly addNameRange     '0.3.2',
+27 silly addNameRange     '0.3.3',
+27 silly addNameRange     '0.3.4',
+27 silly addNameRange     '0.3.6',
+27 silly addNameRange     '0.4.0',
+27 silly addNameRange     '0.5.0',
+27 silly addNameRange     '0.6.0',
+27 silly addNameRange     '0.7.0',
+27 silly addNameRange     '0.7.1',
+27 silly addNameRange     '0.8.0',
+27 silly addNameRange     '0.8.1',
+27 silly addNameRange     '0.9.0',
+27 silly addNameRange     '0.10.0',
+27 silly addNameRange     '0.10.1',
+27 silly addNameRange     '0.10.2',
+27 silly addNameRange     '0.11.0',
+27 silly addNameRange     '0.12.0',
+27 silly addNameRange     '0.12.1',
+27 silly addNameRange     '0.13.0',
+27 silly addNameRange     '0.14.0',
+27 silly addNameRange     '0.14.1',
+27 silly addNameRange     '1.0.0',
+27 silly addNameRange     '1.0.1',
+27 silly addNameRange     '1.0.2',
+27 silly addNameRange     '1.0.3',
+27 silly addNameRange     '1.1.0',
+27 silly addNameRange     '1.2.0',
+27 silly addNameRange     '1.2.1',
+27 silly addNameRange     '1.2.2',
+27 silly addNameRange     '1.3.0',
+27 silly addNameRange     '1.3.1',
+27 silly addNameRange     '1.3.2',
+27 silly addNameRange     '1.4.0',
+27 silly addNameRange     '1.4.1',
+27 silly addNameRange     '1.4.2',
+27 silly addNameRange     '1.4.3',
+27 silly addNameRange     '1.5.0',
+27 silly addNameRange     '1.6.0',
+27 silly addNameRange     '1.7.0',
+27 silly addNameRange     '1.7.1',
+27 silly addNameRange     '1.7.2',
+27 silly addNameRange     '1.7.3',
+27 silly addNameRange     '1.7.4',
+27 silly addNameRange     '1.8.0',
+27 silly addNameRange     '1.8.1',
+27 silly addNameRange     '1.8.2',
+27 silly addNameRange     '1.9.0',
+27 silly addNameRange     '1.10.0',
+27 silly addNameRange     '1.11.0',
+27 silly addNameRange     '1.12.0',
+27 silly addNameRange     '1.12.1',
+27 silly addNameRange     '1.13.0',
+27 silly addNameRange     '1.14.0',
+27 silly addNameRange     '1.15.0',
+27 silly addNameRange     '1.15.1',
+27 silly addNameRange     '1.16.0',
+27 silly addNameRange     '1.16.1',
+27 silly addNameRange     '1.16.2',
+27 silly addNameRange     '1.17.0',
+27 silly addNameRange     '1.17.1',
+27 silly addNameRange     '1.18.0',
+27 silly addNameRange     '1.18.1',
+27 silly addNameRange     '1.18.2',
+27 silly addNameRange     '1.19.0',
+27 silly addNameRange     '1.20.0',
+27 silly addNameRange     '1.20.1',
+27 silly addNameRange     '1.21.0',
+27 silly addNameRange     '1.21.1',
+27 silly addNameRange     '1.21.2',
+27 silly addNameRange     '1.21.3',
+27 silly addNameRange     '1.21.4',
+27 silly addNameRange     '1.21.5',
+27 silly addNameRange     '2.0.0',
+27 silly addNameRange     '2.0.1' ] ]
+28 verbose addNamed [ 'mocha', '2.0.1' ]
+29 verbose addNamed [ '2.0.1', '2.0.1' ]
+30 silly lockFile 5f39746a-mocha-2-0-1 mocha@2.0.1
+31 verbose lock mocha@2.0.1 /home/vagrant/.npm/5f39746a-mocha-2-0-1.lock
+32 silly lockFile 5f39746a-mocha-2-0-1 mocha@2.0.1
+33 silly lockFile 5f39746a-mocha-2-0-1 mocha@2.0.1
+34 silly lockFile b9899f31-mocha mocha@
+35 silly lockFile b9899f31-mocha mocha@
+36 silly resolved [ { name: 'mocha',
+36 silly resolved     version: '2.0.1',
+36 silly resolved     description: 'simple, flexible, fun test framework',
+36 silly resolved     keywords: [ 'mocha', 'test', 'bdd', 'tdd', 'tap' ],
+36 silly resolved     author: { name: 'TJ Holowaychuk', email: 'tj@vision-media.ca' },
+36 silly resolved     contributors:
+36 silly resolved      [ [Object],
+36 silly resolved        [Object],
+36 silly resolved        [Object],
+36 silly resolved        [Object],
+36 silly resolved        [Object],
+36 silly resolved        [Object],
+36 silly resolved        [Object],
+36 silly resolved        [Object] ],
+36 silly resolved     repository: { type: 'git', url: 'git://github.com/mochajs/mocha.git' },
+36 silly resolved     maintainers: [ [Object], [Object], [Object], [Object] ],
+36 silly resolved     main: './index',
+36 silly resolved     browser: './mocha.js',
+36 silly resolved     bin: { mocha: './bin/mocha', _mocha: './bin/_mocha' },
+36 silly resolved     engines: { node: '>= 0.8.x' },
+36 silly resolved     scripts: { test: 'make test-all' },
+36 silly resolved     dependencies:
+36 silly resolved      { commander: '2.3.0',
+36 silly resolved        debug: '2.0.0',
+36 silly resolved        diff: '1.0.8',
+36 silly resolved        'escape-string-regexp': '1.0.2',
+36 silly resolved        glob: '3.2.3',
+36 silly resolved        growl: '1.8.1',
+36 silly resolved        jade: '0.26.3',
+36 silly resolved        mkdirp: '0.5.0' },
+36 silly resolved     devDependencies: { 'coffee-script': '~1.8.0', should: '~4.0.0' },
+36 silly resolved     files:
+36 silly resolved      [ 'bin',
+36 silly resolved        'images',
+36 silly resolved        'lib',
+36 silly resolved        'index.js',
+36 silly resolved        'mocha.css',
+36 silly resolved        'mocha.js',
+36 silly resolved        'LICENSE' ],
+36 silly resolved     licenses: [ [Object] ],
+36 silly resolved     bugs: { url: 'https://github.com/mochajs/mocha/issues' },
+36 silly resolved     homepage: 'https://github.com/mochajs/mocha',
+36 silly resolved     _id: 'mocha@2.0.1',
+36 silly resolved     _shasum: '5a16e88b856d0c4145d8c6888c27ebd4fab13e90',
+36 silly resolved     _from: 'mocha@',
+36 silly resolved     _npmVersion: '1.4.9',
+36 silly resolved     _npmUser: { name: 'travisjeffery', email: 'tj@travisjeffery.com' },
+36 silly resolved     dist:
+36 silly resolved      { shasum: '5a16e88b856d0c4145d8c6888c27ebd4fab13e90',
+36 silly resolved        tarball: 'http://registry.npmjs.org/mocha/-/mocha-2.0.1.tgz' },
+36 silly resolved     directories: {},
+36 silly resolved     _resolved: 'https://registry.npmjs.org/mocha/-/mocha-2.0.1.tgz',
+36 silly resolved     readme: 'ERROR: No README data found!' } ]
+37 info install mocha@2.0.1 into /usr/local/lib
+38 info installOne mocha@2.0.1
+39 info /usr/local/lib/node_modules/mocha unbuild
+40 info preuninstall mocha@2.0.1
+41 info uninstall mocha@2.0.1
+42 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild mocha@2.0.1
+43 verbose /usr/local/bin,[object Object] binRoot
+44 info /usr/local/lib/node_modules/mocha unbuild
+45 info preuninstall mocha@2.0.1
+46 info uninstall mocha@2.0.1
+47 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild mocha@2.0.1
+48 verbose /usr/local/bin,[object Object] binRoot
+49 error error rolling back Error: EACCES, unlink '/usr/local/bin/mocha'
+49 error error rolling back  mocha@2.0.1 { [Error: EACCES, unlink '/usr/local/bin/mocha'] errno: 3, code: 'EACCES', path: '/usr/local/bin/mocha' }
+50 error Error: EACCES, unlink '/usr/local/bin/mocha'
+50 error  { [Error: EACCES, unlink '/usr/local/bin/mocha'] errno: 3, code: 'EACCES', path: '/usr/local/bin/mocha' }
+51 error Please try running this command again as root/Administrator.
+52 error System Linux 3.2.0-23-generic-pae
+53 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "-g" "mocha"
+54 error cwd /vagrant/bloc-jams
+55 error node -v v0.10.29
+56 error npm -v 1.4.14
+57 error path /usr/local/bin/mocha
+58 error code EACCES
+59 error errno 3
+60 error stack Error: EACCES, unlink '/usr/local/bin/mocha'
+61 verbose exit [ 3, true ]
