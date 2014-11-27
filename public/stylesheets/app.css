@@ -12,7 +12,8 @@ body.landing .navbar {
   margin-bottom: 0; }
 
 body.landing {
-  background: #5b5579; }
+  background: #5b5579;
+  color: white; }
 
 /* medium-purple: #7B46A3 - 123, 70, 163 */
 .player-header-nav {
@@ -23,6 +24,7 @@ body.landing {
   padding: 100px 0; }
 
 .hero-content h1 {
+  color: white;
   font-size: 70px;
   margin-bottom: 50px;
   font-weight: 300; }
