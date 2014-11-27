@@ -5,12 +5,16 @@ $(document).ready(function() {
     });
 
 
+  //Extra Exercises
+
+  /*
   var fadeOut = function(event){
     console.log("You clicked on the Bloc Jams Header.");
     $(this).fadeOut("slow");
   }
   
   $('nav').click(fadeOut);
+  
 
   var changeColorOn = function(event) {
     $(this).css("color","green");
@@ -19,7 +23,7 @@ $(document).ready(function() {
   var changeColorOff = function(event) {
     $(this).css("color","white")
   };
-
+  
     $('.hero-content h3').hover(changeColorOn, changeColorOff);
  
    
@@ -29,7 +33,7 @@ $(document).ready(function() {
   };
 
     $('h5').click(changeFontSize);
-
+*/
 
    var onHoverAction = function(event) {
      console.log('Hover action triggered.');
