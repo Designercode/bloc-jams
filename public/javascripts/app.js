@@ -90,9 +90,16 @@
   globals.require.list = list;
   globals.require.brunch = true;
 })();
-require.register("scripts/app", function(exports, require, module) {
-require("./landing");
+require.register("scripts/album", function(exports, require, module) {
+  console.log("album.js");
+
+});
+
+;require.register("scripts/app", function(exports, require, module) {
+require('./landing');
 require('./collection');
+require('./album');
+
 
 
 });
@@ -129,12 +136,12 @@ var buildAlbumThumbnail = function() {
  
 if (document.URL.match(/\/collection.html/)) {
   // Wait until the HTML is fully processed.
-  $(document).ready(function() {
+  $(document).ready(function() 
+  {
     // Your code goes here.
 
   updateCollectionView();
 
-     }
   });
 }
 });

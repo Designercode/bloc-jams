@@ -29,11 +29,11 @@ var buildAlbumThumbnail = function() {
  
 if (document.URL.match(/\/collection.html/)) {
   // Wait until the HTML is fully processed.
-  $(document).ready(function() {
+  $(document).ready(function() 
+  {
     // Your code goes here.
 
   updateCollectionView();
 
-     }
   });
 }
