@@ -10,31 +10,26 @@
     // Pushes the album information down and makes sure there's sufficient space at the bottom of the page
     margin-top: 45px;
     margin-bottom: 20px;
-
-    h3,h4,h5
-    {
-      // Modifying the line height allows us to increase the spacing above and
-      // below the content. Another way of achieving the same effect would be to
-      // set a margin-top and margin-bottom for each of these classes
-      line-height: 150%;
-    }
-
+ 
     h3 
     {
-       font-size: 48px;
+      line-height: 150%;
+      font-size: 48px;
       font-weight: 300;
     }
     
     h4
     {
+      line-height: 150%;
       font-size: 24px;
       font-weight: 700;
     }
     
     h5
     {
+      line-height: 150%;
       font-size: 16px;
-    font-weight: 500;
+      font-weight: 500;
     }
   }
  
