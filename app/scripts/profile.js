@@ -15,6 +15,6 @@
    $(document).ready(function() {
      var $tabs = $(tabsContainer + " a");
      $tabs.click(selectTabHandler);
-     $tabs[0].click();
+     $tabs[0].click(); 
    });
  }
