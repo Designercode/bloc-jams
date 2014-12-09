@@ -281,11 +281,11 @@ if (document.URL.match(/\/album.html/)) {
    albumArtUrl: '/images/album-placeholder.png',
  
    songs: [
-       { name: 'Blue', length: '4:26' },
-       { name: 'Green', length: '3:14' },
-       { name: 'Red', length: '5:01' },
-       { name: 'Pink', length: '3:21'},
-       { name: 'Magenta', length: '2:15'}
+       { name: 'Blue', length: '4:26', audioUrl: '/music/placeholders/blue' },
+       { name: 'Green', length: '3:14', audioUrl: '/music/placeholders/green' },
+       { name: 'Red', length: '5:01', audioUrl: '/music/placeholders/red' },
+       { name: 'Pink', length: '3:21', audioUrl: '/music/placeholders/pink' },
+       { name: 'Magenta', length: '2:15', audioUrl: '/music/placeholders/magenta' }
      ]
  };
  
@@ -334,10 +334,14 @@ if (document.URL.match(/\/album.html/)) {
    ];
  }]);
 
-   blocJams.controller('Collection.controller', ['$scope', function($scope) {
+ blocJams.controller('Collection.controller', ['$scope','SongPlayer', function($scope, SongPlayer) {
    $scope.albums = [];
    for (var i = 0; i < 33; i++) {
      $scope.albums.push(angular.copy(albumPicasso));
+   }
+    
+   $scope.playAlbum = function(album){
+     SongPlayer.setSong(album, album.songs[0]); // Targets first song in the array.
    }
  }]);
 
@@ -370,10 +374,8 @@ if (document.URL.match(/\/album.html/)) {
     
    // the $scope is set to a ng-click in album.html
    // SongPlayer.service() sets the object's album & song to the currently "active" album & song
-   // var playing is set to true -> determines outcome of getSongState
     $scope.playSong = function(song) {
      SongPlayer.setSong($scope.album, song);
-     SongPlayer.play();
     };
   
   // var playing is set to false -> determines outcome of getSongState  
@@ -387,7 +389,9 @@ if (document.URL.match(/\/album.html/)) {
  }]);
  
  blocJams.service('SongPlayer', function() {
-    
+
+    var currentSoundFile = null;
+
     //tracks index of song from given struct (aka: would-be database)
     var trackIndex = function(album, song) {
      return album.songs.indexOf(song);
@@ -400,9 +404,12 @@ if (document.URL.match(/\/album.html/)) {
  
      play: function() {
        this.playing = true;
+       currentSoundFile.play();
      },
+
      pause: function() {
        this.playing = false;
+       currentSoundFile.pause();
      },
 
      next: function() {
@@ -411,8 +418,9 @@ if (document.URL.match(/\/album.html/)) {
        if (currentTrackIndex >= this.currentAlbum.songs.length) {
          currentTrackIndex = 0;
        }
-       this.currentSong = this.currentAlbum.songs[currentTrackIndex];
-     },
+       var song = this.currentAlbum.songs[currentTrackIndex];
+       this.setSong(this.currentAlbum, song);
+       },
 
      previous: function() {
        var currentTrackIndex = trackIndex(this.currentAlbum, this.currentSong);
@@ -421,15 +429,48 @@ if (document.URL.match(/\/album.html/)) {
          currentTrackIndex = this.currentAlbum.songs.length - 1;
        }
  
-       this.currentSong = this.currentAlbum.songs[currentTrackIndex];
+       var song = this.currentAlbum.songs[currentTrackIndex];
+       this.setSong(this.currentAlbum, song);
      },
 
      setSong: function(album, song) {
+      if (currentSoundFile) {
+      currentSoundFile.stop();
+    }
        this.currentAlbum = album;
        this.currentSong = song;
+       currentSoundFile = new buzz.sound(song.audioUrl, {
+          formats: [ "mp3" ],
+          preload: true
+    });
+ 
+    this.play();
      }
    };
  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
