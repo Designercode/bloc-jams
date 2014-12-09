@@ -267,7 +267,7 @@ if (document.URL.match(/\/album.html/)) {
 });
 
 ;require.register("scripts/app", function(exports, require, module) {
-  //require('./landing');
+ //require('./landing');
  //require('./album');
  //require('./collection');
  //require('./profile');
@@ -341,23 +341,26 @@ if (document.URL.match(/\/album.html/)) {
    }
  }]);
 
-  blocJams.controller('Album.controller', ['$scope', function($scope) {
+  blocJams.controller('Album.controller', ['$scope', 'SongPlayer', function($scope, SongPlayer) {
    $scope.album = angular.copy(albumPicasso);
 
    var hoveredSong = null;
    var playingSong = null;
- 
+
+  // var hoveredSong is assigned the song hovered over
    $scope.onHoverSong = function(song) {
      hoveredSong = song;
    };
  
+  // when the hover is removed, var hoveredSong returns to value "null"
    $scope.offHoverSong = function(song) {
      hoveredSong = null;
    };
 
+   // getSongState preforms a switch function that returns 3 options depending on results of if/else statements.
       $scope.getSongState = function(song) {
-     if (song === playingSong) {
-       return 'playing';
+     if (song === SongPlayer.currentSong && SongPlayer.playing) {
+       return 'playing'; // -> Returns strings that match the ng-switch-when directives in album.html
      }
      else if (song === hoveredSong) {
        return 'hovered';
@@ -365,14 +368,42 @@ if (document.URL.match(/\/album.html/)) {
      return 'default';
    };
     
+   // the $scope is set to a ng-click in album.html
+   // SongPlayer.service() sets the object's album & song to the currently "active" album & song
+   // var playing is set to true -> determines outcome of getSongState
     $scope.playSong = function(song) {
-      playingSong = song;
+     SongPlayer.setSong($scope.album, song);
+     SongPlayer.play();
     };
- 
+  
+  // var playing is set to false -> determines outcome of getSongState  
     $scope.pauseSong = function(song) {
-      playingSong = null;
+     SongPlayer.pause();
     };
  }]);  
+
+  blocJams.controller('PlayerBar.controller', ['$scope', 'SongPlayer', function($scope, SongPlayer) {
+   $scope.songPlayer = SongPlayer; // SongPlayer is defined by songPlayer located in ng-show & ng-click in player-bar.html ???
+ }]);
+ 
+ blocJams.service('SongPlayer', function() {
+   return {
+     currentSong: null, // the return must be creating these new variables and immediately assigning them ...
+     currentAlbum: null,
+     playing: false, 
+ 
+     play: function() {
+       this.playing = true;
+     },
+     pause: function() {
+       this.playing = false;
+     },
+     setSong: function(album, song) {
+       this.currentAlbum = album;
+       this.currentSong = song;
+     }
+   };
+ });
 
 
 
