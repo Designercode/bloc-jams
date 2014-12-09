@@ -114,12 +114,18 @@
  }]);  
 
   blocJams.controller('PlayerBar.controller', ['$scope', 'SongPlayer', function($scope, SongPlayer) {
-   $scope.songPlayer = SongPlayer; // SongPlayer is defined by songPlayer located in ng-show & ng-click in player-bar.html ???
+   $scope.songPlayer = SongPlayer; // SongPlayer (service) sends returned values to songPlayer
  }]);
  
  blocJams.service('SongPlayer', function() {
+    
+    //tracks index of song from given struct (aka: would-be database)
+    var trackIndex = function(album, song) {
+     return album.songs.indexOf(song);
+   };
+ 
    return {
-     currentSong: null, // the return must be creating these new variables and immediately assigning them ...
+     currentSong: null, 
      currentAlbum: null,
      playing: false, 
  
@@ -129,6 +135,26 @@
      pause: function() {
        this.playing = false;
      },
+
+     next: function() {
+       var currentTrackIndex = trackIndex(this.currentAlbum, this.currentSong);
+       currentTrackIndex++;
+       if (currentTrackIndex >= this.currentAlbum.songs.length) {
+         currentTrackIndex = 0;
+       }
+       this.currentSong = this.currentAlbum.songs[currentTrackIndex];
+     },
+
+     previous: function() {
+       var currentTrackIndex = trackIndex(this.currentAlbum, this.currentSong);
+       currentTrackIndex--;
+       if (currentTrackIndex < 0) {
+         currentTrackIndex = this.currentAlbum.songs.length - 1;
+       }
+ 
+       this.currentSong = this.currentAlbum.songs[currentTrackIndex];
+     },
+
      setSong: function(album, song) {
        this.currentAlbum = album;
        this.currentSong = song;
