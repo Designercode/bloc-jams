@@ -117,9 +117,17 @@
 
   blocJams.controller('PlayerBar.controller', ['$scope', 'SongPlayer', function($scope, SongPlayer) {
    $scope.songPlayer = SongPlayer; // SongPlayer (service) sends returned values to songPlayer
+
+   // dynamically update SongPlayer with the song time
+    SongPlayer.onTimeUpdate(function(event, time){
+     $scope.$apply(function(){
+       $scope.playTime = time;
+     });
+   });
+ 
  }]);
  
- blocJams.service('SongPlayer', function() {
+ blocJams.service('SongPlayer', ['$rootScope', function($rootScope) {
 
     var currentSoundFile = null;
 
@@ -151,42 +159,52 @@
        }
        var song = this.currentAlbum.songs[currentTrackIndex];
        this.setSong(this.currentAlbum, song);
-       },
+     },
 
      previous: function() {
        var currentTrackIndex = trackIndex(this.currentAlbum, this.currentSong);
        currentTrackIndex--;
        if (currentTrackIndex < 0) {
          currentTrackIndex = this.currentAlbum.songs.length - 1;
-       }
+      }
  
        var song = this.currentAlbum.songs[currentTrackIndex];
        this.setSong(this.currentAlbum, song);
      },
 
-      seek: function(time) {
+     seek: function(time) {
        // Checks to make sure that a sound file is playing before seeking.
        if(currentSoundFile) {
         // Uses a Buzz method to set the time of the song.
         currentSoundFile.setTime(time);
-       }
+        }
+     },
+
+     // listener for $rootscope.$broadcast
+     onTimeUpdate: function(callback) {
+       return $rootScope.$on('sound:timeupdate', callback);
      },
 
      setSong: function(album, song) {
       if (currentSoundFile) {
-      currentSoundFile.stop();
-    }
-       this.currentAlbum = album;
-       this.currentSong = song;
-       currentSoundFile = new buzz.sound(song.audioUrl, {
-          formats: [ "mp3" ],
-          preload: true
-    });
- 
-    this.play();
+        currentSoundFile.stop();
+      }
+      this.currentAlbum = album;
+      this.currentSong = song;
+  
+      currentSoundFile = new buzz.sound(song.audioUrl, {
+        formats: [ "mp3" ],
+        preload: true
+      });
+
+        currentSoundFile.bind('timeupdate', function(e){
+        $rootScope.$broadcast('sound:timeupdate', this.getTime());
+      });
+  
+        this.play();
      }
    };
- });
+ }]);
  
 blocJams.directive('slider', ['$document', function($document){
 
@@ -284,6 +302,36 @@ blocJams.directive('slider', ['$document', function($document){
     }
    };
  }]);
+
+  
+ blocJams.filter('timecode', function(){
+   return function(seconds) {
+     seconds = Number.parseFloat(seconds);
+ 
+     // Returned when no time is provided.
+     if (Number.isNaN(seconds)) {
+       return '-:--';
+     }
+ 
+     // make it a whole number
+     var wholeSeconds = Math.floor(seconds);
+ 
+     var minutes = Math.floor(wholeSeconds / 60);
+ 
+     remainingSeconds = wholeSeconds % 60;
+ 
+     var output = minutes + ':';
+ 
+     // zero pad seconds, so 9 seconds should be :09
+     if (remainingSeconds < 10) {
+       output += '0';
+     }
+ 
+     output += remainingSeconds;
+ 
+     return output;
+   }
+ })
 
 
 
