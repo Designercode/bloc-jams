@@ -387,6 +387,36 @@ if (document.URL.match(/\/album.html/)) {
   blocJams.controller('PlayerBar.controller', ['$scope', 'SongPlayer', function($scope, SongPlayer) {
    $scope.songPlayer = SongPlayer; // SongPlayer (service) sends returned values to songPlayer
 
+
+   // adds bars to sound icon when volume level increases
+   $scope.volumeClass = function() {
+     return {
+       'fa-volume-off': SongPlayer.volume == 0,
+       'fa-volume-down': SongPlayer.volume <= 70 && SongPlayer.volume > 0,
+       'fa-volume-up': SongPlayer.volume > 70
+     }
+   }
+
+   // mutes currently playing song when sound icon is clicked
+   $scope.volumeMute = function(timesClicked) 
+   {
+      if ((timesClicked %2) !== 0)
+        {
+          for (var sound in buzz.sounds)
+            {
+              buzz.sounds[sound].mute();
+            }
+        }
+      
+      else if ((timesClicked %2) === 0)
+        {
+          for (var sound in buzz.sounds)
+            {
+              buzz.sounds[sound].unmute();
+            } 
+        }
+   }
+ 
    // dynamically update SongPlayer with the song time
     SongPlayer.onTimeUpdate(function(event, time){
      $scope.$apply(function(){
@@ -409,6 +439,8 @@ if (document.URL.match(/\/album.html/)) {
      currentSong: null, 
      currentAlbum: null,
      playing: false, 
+     volume: 90,
+
  
      play: function() {
        this.playing = true;
@@ -452,6 +484,13 @@ if (document.URL.match(/\/album.html/)) {
      // listener for $rootscope.$broadcast
      onTimeUpdate: function(callback) {
        return $rootScope.$on('sound:timeupdate', callback);
+     },
+
+     setVolume: function(volume) {
+      if(currentSoundFile){
+        currentSoundFile.setVolume(volume);
+      }
+      this.volume = volume;
      },
 
      setSong: function(album, song) {
